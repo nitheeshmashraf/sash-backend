@@ -235,7 +235,17 @@ CORS_ORIGIN_WHITELIST = (
   DASHBOARD_URL,
   STOREFRONT_URL,
 )
-
+CORS_ALLOW_HEADERS = [
+'accept',
+'accept-encoding',
+'authorization',
+'content-type',
+'dnt',
+'origin',
+'user-agent',
+'x-csrftoken',
+'x-requested-with',
+]
 INSTALLED_APPS = [
     # External apps that need to go before django's
     "storages",
