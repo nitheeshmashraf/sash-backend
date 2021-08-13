@@ -231,6 +231,7 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
   'http://localhost:3000',
+  'http://localhost:9000',
   DASHBOARD_URL,
   STOREFRONT_URL,
 )
