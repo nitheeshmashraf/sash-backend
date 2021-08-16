@@ -3,7 +3,7 @@ import json
 from django.template.response import TemplateResponse
 import logging
 import requests
-from urllib.parse import unquotes
+from urllib.parse import unquote
 
 def home(request):
     storefront_url = os.environ.get("STOREFRONT_URL", "")
