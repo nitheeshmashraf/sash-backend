@@ -12,7 +12,7 @@ from .plugins.views import (
     handle_plugin_webhook,
 )
 from .product.views import digital_product
-
+from .core import views
 urlpatterns = [
     url(r"^graphql/$", csrf_exempt(GraphQLView.as_view(schema=schema)), name="api"),
     url(r"confirm_mail/", views.confirm_mail),
