@@ -1,9 +1,9 @@
 import os
 import json
 from django.template.response import TemplateResponse
-import logging
 import requests
 from urllib.parse import unquote
+from django.http import HttpResponse
 
 def home(request):
     storefront_url = os.environ.get("STOREFRONT_URL", "")
@@ -40,9 +40,8 @@ def confirm_mail(request):
         }
     }
     response = requests.post(url=URL, json=json)
-    logger.debug("response json: %s", response.json())
     if response.json()["data"]["confirmAccount"]["user"] is None:
-        error = response.json()["data"]["confirmAccount"]["accountErrors"][0]["message"]
+        error = response.json()["data"]["confirmAccount"]["errors"][0]["message"]
         message = error
         return TemplateResponse(
             request,
@@ -50,7 +49,6 @@ def confirm_mail(request):
             {"message":message},
         )
     else :
-        logger.debug("response isActive= %s", response.json()["data"]["confirmAccount"]["user"]["isActive"])
         message = "Email verified."
         return TemplateResponse(
             request,
