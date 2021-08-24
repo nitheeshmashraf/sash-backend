@@ -59,12 +59,15 @@ def confirm_mail(request):
         )
 
 def stripeSavedCards(request):
-    customer_id = request.GET.get('customer_id'),
-    payment_methods = stripe.PaymentMethod.list(
-        customer= customer_id,
-        type='card'
-    )
-    print(payment_methods)
+    data =json.loads(request.body)
+    if 'customer_id' in data:
+        customer_id = data['customer_id']
+        payment_methods = stripe.PaymentMethod.list(
+            customer= customer_id,
+            type='card'
+        )
+        print(payment_methods)
+        return("success")
     
-    return HttpResponse("response")
+    return HttpResponse("failed response")
 
