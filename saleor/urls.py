@@ -16,6 +16,7 @@ from .core import views
 urlpatterns = [
     url(r"^graphql/$", csrf_exempt(GraphQLView.as_view(schema=schema)), name="api"),
     url(r"^confirm-mail/", views.confirm_mail),
+    url(r"^saved-cards/", views.stripeSavedCards),
     url(
         r"^digital-download/(?P<token>[0-9A-Za-z_\-]+)/$",
         digital_product,

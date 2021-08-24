@@ -4,6 +4,8 @@ from django.template.response import TemplateResponse
 import requests
 from urllib.parse import unquote
 from django.http import HttpResponse
+import stripe
+stripe.api_key = "sk_test_51J3xXRCJ2mMr1JG8ndwake0gW5f2DrWb5WUKFGSzP7yE0kNxupGNm7i40PMXZP7J8z4Z1hy0YHZL3CZrMHgXV1df002hKTvjv5"
 
 def home(request):
     storefront_url = os.environ.get("STOREFRONT_URL", "")
@@ -55,3 +57,14 @@ def confirm_mail(request):
             "confirm_mail/success.html",
             {"message":message},
         )
+
+def stripeSavedCards(request):
+    customer_id = request.GET.get('customer_id'),
+    payment_methods = stripe.PaymentMethod.list(
+        customer= customer_id,
+        type='card'
+    )
+    print(payment_methods)
+    
+    return HttpResponse("response")
+
